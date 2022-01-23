@@ -17,3 +17,8 @@ def get_html(url):
   return bsObj
 
 
+from theaters.cgv import find_area_code, find_theater_code
+
+cgv_area_code = find_area_code(get_html('http://www.cgv.co.kr/theaters/'))
+cgv_theater_code = find_theater_code(get_html('http://www.cgv.co.kr/theaters/'))
+
