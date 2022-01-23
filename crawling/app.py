@@ -18,7 +18,10 @@ def get_html(url):
 
 
 from theaters.cgv import find_area_code, find_theater_code
+from theaters.megabox import find_mbox_theater_code
 
 cgv_area_code = find_area_code(get_html('http://www.cgv.co.kr/theaters/'))
 cgv_theater_code = find_theater_code(get_html('http://www.cgv.co.kr/theaters/'))
+
+mbox_theater_code = find_mbox_theater_code(get_html('https://www.megabox.co.kr/theater/list/'))
 
