@@ -2,7 +2,7 @@ from urllib.parse import urlparse, parse_qs
 
 
 # 지역 코드 (서울 - 01)
-def find_area_code(bsObj):
+def find_cgv_area_code(bsObj):
   area_list = []
   cities = bsObj.select('.sect-city > ul > li')
 
@@ -22,7 +22,7 @@ def find_area_code(bsObj):
   return area_list
 
 # 영화관 코드 (CGV 강남 - 01 > 0056)
-def find_theater_code(bsObj):
+def find_cgv_theater_code(bsObj):
   theater_list = []
   area_list = bsObj.select('.area')
 

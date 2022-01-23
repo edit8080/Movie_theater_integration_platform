@@ -17,11 +17,14 @@ def get_html(url):
   return bsObj
 
 
-from theaters.cgv import find_area_code, find_theater_code
+from theaters.cgv import find_cgv_area_code, find_cgv_theater_code
 from theaters.megabox import find_mbox_theater_code
 
-cgv_area_code = find_area_code(get_html('http://www.cgv.co.kr/theaters/'))
-cgv_theater_code = find_theater_code(get_html('http://www.cgv.co.kr/theaters/'))
+cgv_theater_url = 'http://www.cgv.co.kr/theaters/'
+mbox_theater_url = 'https://www.megabox.co.kr/theater/list/'
 
-mbox_theater_code = find_mbox_theater_code(get_html('https://www.megabox.co.kr/theater/list/'))
+cgv_area_code = find_cgv_area_code(get_html(cgv_theater_url))
+cgv_theater_code = find_cgv_theater_code(get_html(cgv_theater_url))
+
+mbox_theater_code = find_mbox_theater_code(get_html(mbox_theater_url))
 
