@@ -2,7 +2,6 @@ from urllib.parse import urlparse, parse_qs
 from parse import *
 
 """
-(cgvMovieCode) - Primary Key
 {
   cgvMovieCode: String, 
   movieTitle: String,
