@@ -19,12 +19,17 @@ def get_html(url):
 
 from theaters.cgv import find_cgv_area_code, find_cgv_theater_code
 from theaters.megabox import find_mbox_theater_code
+from theaters.lotte import find_lotte_area_code, find_lotte_theater_code
 
 cgv_theater_url = 'http://www.cgv.co.kr/theaters/'
 mbox_theater_url = 'https://www.megabox.co.kr/theater/list/'
+lotte_theater_url = 'https://www.lottecinema.co.kr/'
 
 cgv_area_code = find_cgv_area_code(get_html(cgv_theater_url))
 cgv_theater_code = find_cgv_theater_code(get_html(cgv_theater_url))
 
 mbox_theater_code = find_mbox_theater_code(get_html(mbox_theater_url))
+
+lotte_area_code = find_lotte_area_code(get_html(lotte_theater_url))
+lotte_theater_code = find_lotte_theater_code(get_html(lotte_theater_url))
 
