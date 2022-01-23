@@ -15,8 +15,8 @@ def find_cgv_area_code(bsObj):
 
     # TODO : 일부 지역 코드 분리 (ex: 부산/울산 - 05,207)
     area_list.append({
-      'area': area_name,
-      'areaCode': code['areacode'][0]
+      'areaCode': code['areacode'][0],
+      'areaName': area_name,
     })
 
   return area_list
