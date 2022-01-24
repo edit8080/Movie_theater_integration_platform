@@ -5,7 +5,7 @@ from parse import *
 {
   cgvMovieCode: String, 
   movieTitle: String,
-  moviePlayTime: String,
+  moviePlayTime: Number,
   movieGrade: Number
 }
 """
@@ -44,7 +44,7 @@ def get_cgv_movie_list(bsObj):
     movie_list.append({
       'cgvMovieCode': code['midx'][0],
       'movieTitle': movie_title,
-      'moviePlayTime': parse_str['movie_play_time'],
+      'moviePlayTime': int(parse_str['movie_play_time']),
       'movieGrade': movie_grade
     })
 
