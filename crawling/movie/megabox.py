@@ -22,7 +22,7 @@ def check_movie_grade(node):
   elif 'age-15' in className:
     return 15
   
-  elif 'age-18' in className:
+  elif 'age-19' in className:
     return 18
 
 
