@@ -56,10 +56,16 @@ from movie.megabox import get_mbox_movie_list
 cgv_movies_url = 'http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0001&date=20220128'
 mbox_movies_url = 'https://www.megabox.co.kr/theater/time?brchNo=1372'
 
+mbox_btn_selector = 'button[date-data="2022.01.26"]'
+
 cgv_movie_list = get_cgv_movie_list(get_html(cgv_movies_url))
-mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, 'button[date-data="2022.01.25"]')) # TODO: date 예외 처리
+mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, mbox_btn_selector)) # TODO: date 예외 처리
 
 from screen.cgv import get_cgv_screen_list, get_cgv_screen_movie_list
+from screen.megabox import get_mbox_screen_list, get_mbox_screen_movie_list
 
 cgv_screen_list = get_cgv_screen_list(get_html(cgv_movies_url))
 cgv_screen_movie_list = get_cgv_screen_movie_list(get_html(cgv_movies_url))
+
+mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_btn_selector))
+mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_btn_selector))
