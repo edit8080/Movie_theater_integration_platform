@@ -48,13 +48,13 @@ cgv_theater_url = 'http://www.cgv.co.kr/theaters/'
 mbox_theater_url = 'https://www.megabox.co.kr/theater/list/'
 lotte_theater_url = 'https://www.lottecinema.co.kr/'
 
-cgv_area_code = find_cgv_area_code(get_html(cgv_theater_url))
-cgv_theater_code = find_cgv_theater_code(get_html(cgv_theater_url))
+# cgv_area_code = find_cgv_area_code(get_html(cgv_theater_url))
+# cgv_theater_code = find_cgv_theater_code(get_html(cgv_theater_url))
 
-mbox_theater_code = find_mbox_theater_code(get_html(mbox_theater_url))
+# mbox_theater_code = find_mbox_theater_code(get_html(mbox_theater_url))
 
-lotte_area_code = find_lotte_area_code(get_html(lotte_theater_url))
-lotte_theater_code = find_lotte_theater_code(get_html(lotte_theater_url))
+# lotte_area_code = find_lotte_area_code(get_html(lotte_theater_url))
+# lotte_theater_code = find_lotte_theater_code(get_html(lotte_theater_url))
 
 from movie.cgv import get_cgv_movie_list
 from movie.megabox import get_mbox_movie_list
@@ -71,19 +71,20 @@ mbox_click_selector = 'button[date-data="2022.02.10"]'
 lotte_click_selector = '.owl-item:nth-child(3) input[type=radio]'
 
 
-cgv_movie_list = get_cgv_movie_list(get_html(cgv_movies_url))
-mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector)) # TODO: date 예외 처리
+# cgv_movie_list = get_cgv_movie_list(get_html(cgv_movies_url))
+# mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector)) # TODO: date 예외 처리
 lotte_movie_list = get_lotte_movie_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True))
-
+print(lotte_movie_list)
 
 from screen.cgv import get_cgv_screen_list, get_cgv_screen_movie_list
 from screen.megabox import get_mbox_screen_list, get_mbox_screen_movie_list
 from screen.lotte import get_lotte_screen_list, get_lotte_screen_movie_list
 
-cgv_screen_list = get_cgv_screen_list(get_html(cgv_movies_url))
-cgv_screen_movie_list = get_cgv_screen_movie_list(get_html(cgv_movies_url))
+# cgv_screen_list = get_cgv_screen_list(get_html(cgv_movies_url))
+# cgv_screen_movie_list = get_cgv_screen_movie_list(get_html(cgv_movies_url))
 
-mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
-mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
+# mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
+# mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
 
-lotte_screen_list = get_lotte_screen_list(get_html_with_click(lotte_movie_list, lotte_click_selector))
+# lotte_screen_list = get_lotte_screen_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True), lotte_movies_url)
+lotte_screen_movie_list = get_lotte_screen_movie_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True))
