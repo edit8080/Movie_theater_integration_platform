@@ -58,22 +58,32 @@ lotte_theater_code = find_lotte_theater_code(get_html(lotte_theater_url))
 
 from movie.cgv import get_cgv_movie_list
 from movie.megabox import get_mbox_movie_list
+from movie.lotte import get_lotte_movie_list
 
 ### TODO: URL 영화관 코드는 REST API Query 로 탐색 (default 지정 필요?)
-# TODO: date 예외 처리
-cgv_movies_url = 'http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0001&date=20220128'
+# TODO: 각 영화관 url date 예외 처리
+cgv_movies_url = 'http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0001&date=20220210'
 mbox_movies_url = 'https://www.megabox.co.kr/theater/time?brchNo=1372'
+lotte_movies_url = 'https://www.lottecinema.co.kr/NLCHS/Cinema/Detail?divisionCode=1&detailDivisionCode=1&cinemaID=9094'
 
-mbox_btn_selector = 'button[date-data="2022.01.26"]'
+
+mbox_click_selector = 'button[date-data="2022.02.10"]'
+lotte_click_selector = '.owl-item:nth-child(3) input[type=radio]'
+
 
 cgv_movie_list = get_cgv_movie_list(get_html(cgv_movies_url))
-mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, mbox_btn_selector)) # TODO: date 예외 처리
+mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector)) # TODO: date 예외 처리
+lotte_movie_list = get_lotte_movie_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True))
+
 
 from screen.cgv import get_cgv_screen_list, get_cgv_screen_movie_list
 from screen.megabox import get_mbox_screen_list, get_mbox_screen_movie_list
+from screen.lotte import get_lotte_screen_list, get_lotte_screen_movie_list
 
 cgv_screen_list = get_cgv_screen_list(get_html(cgv_movies_url))
 cgv_screen_movie_list = get_cgv_screen_movie_list(get_html(cgv_movies_url))
 
-mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_btn_selector))
-mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_btn_selector))
+mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
+mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
+
+lotte_screen_list = get_lotte_screen_list(get_html_with_click(lotte_movie_list, lotte_click_selector))
