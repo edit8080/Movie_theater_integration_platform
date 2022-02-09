@@ -50,12 +50,12 @@ def get_lotte_movie_list(bsObj):
 
     time_info = movie_section.find('ul', {'class': 'list_time'}).find('dd', {'class': 'time'}).get_text().strip()
 
-    parse_str = parse('{movie_start_time}종료 {movie_end_time}', time_info)  
+    parse_time = parse('{start_time}종료 {end_time}', time_info)  
 
     movie_list.append({
       'lotteMovieCode': code['movie'][0],
       'movieTitle': movie_title,
-      'moviePlayTime': hhmm_diff_minutes(parse_str['movie_start_time'], parse_str['movie_end_time']),
+      'moviePlayTime': hhmm_diff_minutes(parse_time['start_time'], parse_time['end_time']),
       'movieGrade': int(movie_grade)
     })
 
