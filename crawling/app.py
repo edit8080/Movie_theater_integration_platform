@@ -1,5 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import ssl
@@ -7,17 +10,22 @@ import time
 
 options = webdriver.ChromeOptions()
 options.add_argument("headless")
+options.add_argument("--disable-popup-blocking")
 browser = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
 
 context = ssl._create_unverified_context()
 
-def get_html_with_click(url, css_selector):
+def get_html_with_click(url, css_selector, alert_remove=False):
   browser.get(url)
   time.sleep(1)
 
-  browser.find_element(By.CSS_SELECTOR, css_selector).click() 
-  time.sleep(1)
+  if alert_remove:
+    br = Alert(browser)
+    br.accept()
+    time.sleep(1)
 
+  browser.execute_script("arguments[0].click();", WebDriverWait(browser, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, css_selector))))
+  time.sleep(1)
   bsObj = BeautifulSoup(browser.page_source, 'html.parser')
 
   return bsObj
