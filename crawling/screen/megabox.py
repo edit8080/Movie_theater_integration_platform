@@ -1,3 +1,4 @@
+from urllib.parse import urlparse, parse_qs
 from parse import *
 
 """
@@ -8,8 +9,9 @@ from parse import *
   total_seat: Number (103),
 }
 """
-def get_mbox_screen_list(bsObj):
+def get_mbox_screen_list(bsObj, url):
   screen_list = []
+  url_query = parse_qs(urlparse(url).query)
 
   for hall_time_section in bsObj.select('.theater-list'):
     hall_section = hall_time_section.find('div', {'class': 'theater-type-box'})
@@ -17,10 +19,9 @@ def get_mbox_screen_list(bsObj):
     time_table_td = hall_section.find('table', {'class': 'time-list-table'}).find('td')
 
     # 매진 (정보 x)
-    if not 'brch-no' in time_table_td.attrs:
+    if not 'theab-no' in time_table_td.attrs:
       continue
 
-    theater_code = time_table_td.attrs['brch-no']
     screen_code = time_table_td.attrs['theab-no']
 
     screen_name = hall_section.find('p', {'class': 'theater-name'}).get_text().strip()
@@ -29,7 +30,7 @@ def get_mbox_screen_list(bsObj):
     total_seat_str = parse('총 {total_seat}석', total_seat)
 
     screen_list.append({
-      'theater_id': theater_code,
+      'theater_id': url_query['brchNo'][0],
       'screen_id': screen_code,
       'screen_name': screen_name,
       'total_seat': int(total_seat_str['total_seat'])

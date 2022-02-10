@@ -83,8 +83,8 @@ from screen.lotte import get_lotte_screen_list, get_lotte_screen_movie_list
 cgv_screen_list = get_cgv_screen_list(get_html(cgv_movies_url), cgv_movies_url)
 cgv_screen_movie_list = get_cgv_screen_movie_list(get_html(cgv_movies_url))
 
-# mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
-# mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
+mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_click_selector), mbox_movies_url)
+mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
 
 # lotte_screen_list = get_lotte_screen_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True), lotte_movies_url)
 lotte_screen_movie_list = get_lotte_screen_movie_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True))
