@@ -2,10 +2,10 @@ from parse import *
 
 """
 {
-  theaterCode: String ('1372'),
-  screenCode: String ('02'),
-  screenName: String ('2관'), 
-  totalSeat: Number (103),
+  theater_id: String ('1372'),
+  screen_id: String ('02'),
+  screen_name: String ('2관'), 
+  total_seat: Number (103),
 }
 """
 def get_mbox_screen_list(bsObj):
@@ -29,22 +29,22 @@ def get_mbox_screen_list(bsObj):
     total_seat_str = parse('총 {total_seat}석', total_seat)
 
     screen_list.append({
-      'theaterCode': theater_code,
-      'screenCode': screen_code,
-      'screenName': screen_name,
-      'totalSeat': int(total_seat_str['total_seat'])
+      'theater_id': theater_code,
+      'screen_id': screen_code,
+      'screen_name': screen_name,
+      'total_seat': int(total_seat_str['total_seat'])
     })
 
   return screen_list
 
 """
 {
-  mboxMovieCode: String ('21089100'),
-  screenCode: String ('02'),
-  screenType: String ('2D'),
-  leftSeat: Number (70),
-  movieStartTime: String ('08:20'),
-  movieEndTime: String ('10:36'),
+  mbox_movie_id: String ('21089100'),
+  screen_id: String ('02'),
+  screen_type: String ('2D'),
+  left_seat: Number (70),
+  start_time: String ('08:20'),
+  end_time: String ('10:36'),
 }
 """
 def get_mbox_screen_movie_list(bsObj):
@@ -71,12 +71,12 @@ def get_mbox_screen_movie_list(bsObj):
     screen_type = hall_section.find('div', {'class': 'theater-type-area'}).get_text().strip()
 
     screen_movie_list.append({
-      'mboxMovieCode': movie_code,
-      'screenCode': screen_code,
-      'screenType': screen_type,
-      'leftSeat': int(left_seat_str['left_seat']),
-      'movieStartTime': movie_time_str['start_time'],
-      'movieEndTime': movie_time_str['end_time'],
+      'mbox_movie_id': movie_code,
+      'screen_id': screen_code,
+      'screen_type': screen_type,
+      'left_seat': int(left_seat_str['left_seat']),
+      'start_time': movie_time_str['start_time'],
+      'end_time': movie_time_str['end_time'],
     })
 
   return screen_movie_list

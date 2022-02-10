@@ -4,10 +4,10 @@ from parse import *
 
 """
 {
-  lotteMovieCode: String, 
-  movieTitle: String,
-  moviePlayTime: Number,
-  movieGrade: Number
+  lotte_movie_id: String, 
+  movie_title: String,
+  play_time: Number,
+  movie_grade: Number
 }
 """
 
@@ -53,10 +53,10 @@ def get_lotte_movie_list(bsObj):
     parse_time = parse('{start_time}종료 {end_time}', time_info)  
 
     movie_list.append({
-      'lotteMovieCode': code['movie'][0],
-      'movieTitle': movie_title,
-      'moviePlayTime': hhmm_diff_minutes(parse_time['start_time'], parse_time['end_time']),
-      'movieGrade': int(movie_grade)
+      'lotte_movie_id': code['movie'][0],
+      'movie_title': movie_title,
+      'play_time': hhmm_diff_minutes(parse_time['start_time'], parse_time['end_time']),
+      'movie_grade': int(movie_grade)
     })
 
   return movie_list

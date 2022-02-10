@@ -5,7 +5,7 @@ from urllib.parse import urlparse, parse_qs
 def find_mbox_area_code(bsObj):
   pass
 
-# 영화관 코드 ()
+# 영화관 코드
 def find_mbox_theater_code(bsObj):
   theater_code_list = []
   theater_section = bsObj.select('.theater-place > ul > li')
@@ -21,9 +21,9 @@ def find_mbox_theater_code(bsObj):
 
       if 'brchNo' in code:
         theater_code_list.append({
-          'areaName': area_name,
-          'theaterCode': code['brchNo'][0],
-          'theaterName': theater_name,
+          'area_name': area_name,
+          'theater_id': code['brchNo'][0],
+          'theater_name': theater_name,
         })
 
   return theater_code_list

@@ -15,8 +15,8 @@ def find_cgv_area_code(bsObj):
 
     # TODO : 일부 지역 코드 분리 (ex: 부산/울산 - 05,207)
     area_list.append({
-      'areaCode': code['areacode'][0],
-      'areaName': area_name,
+      'area_code': code['areacode'][0],
+      'area_name': area_name,
     })
 
   return area_list
@@ -35,9 +35,9 @@ def find_cgv_theater_code(bsObj):
 
       if 'areacode' in code and 'theaterCode' in code:
         theater_list.append({
-          'areaCode': code['areacode'][0],
-          'theaterCode': code['theaterCode'][0],
-          'theaterName': name,
+          'area_code': code['areacode'][0],
+          'theater_id': code['theaterCode'][0],
+          'theater_name': name,
         })
 
   return theater_list

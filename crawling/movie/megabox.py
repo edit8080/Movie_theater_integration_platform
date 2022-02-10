@@ -3,10 +3,10 @@ from parse import *
 
 """
 {
-  mboxMovieCode: String, 
-  movieTitle: String,
-  moviePlayTime: Number,
-  movieGrade: Number
+  mbox_movie_id: String, 
+  movie_title: String,
+  play_time: Number,
+  movie_grade: Number
 }
 """
 
@@ -45,10 +45,10 @@ def get_mbox_movie_list(bsObj):
     parse_str = parse('%s/상영시간 {movie_play_time}분' % playing_str, play_time_str) 
 
     movie_list.append({
-      'mboxMovieCode': code['rpstMovieNo'][0],
-      'movieTitle': movie_title,
-      'moviePlayTime': int(parse_str['movie_play_time']),
-      'movieGrade': movie_grade
+      'mbox_movie_id': code['rpstMovieNo'][0],
+      'movie_title': movie_title,
+      'play_time': int(parse_str['movie_play_time']),
+      'movie_grade': movie_grade
     })
 
   return movie_list

@@ -4,10 +4,10 @@ from parse import *
 
 """
 {
-  theaterCode: String ('1372'),
-  screenCode: String ('2'),
-  screenName: String ('2관'), 
-  totalSeat: Number (103),
+  theater_id: String ('1372'),
+  screen_id: String ('2'),
+  screen_name: String ('2관'), 
+  total_seat: Number (103),
 }
 """
 def get_lotte_screen_list(bsObj, url):
@@ -29,10 +29,10 @@ def get_lotte_screen_list(bsObj, url):
 
         # 스크린 정보 하나 삽입되면 시간표 탐색 종료
         screen_list.append({
-          'theaterCode': theater_code['cinemaID'][0],
-          'screenCode': screen_str['screen_code'],
-          'screenName': screen_name,
-          'totalSeat': int(parse_seat['total_seat'])
+          'theater_id': theater_code['cinemaID'][0],
+          'screen_id': screen_str['screen_code'],
+          'screen_name': screen_name,
+          'total_seat': int(parse_seat['total_seat'])
         })
         break
   
@@ -41,12 +41,12 @@ def get_lotte_screen_list(bsObj, url):
 
 """
 {
-  lotteMovieCode: String ('18407'),
-  screenCode: String ('2'),
-  screenType: String ('2D'),
-  leftSeat: Number (70),
-  movieStartTime: String ('08:20'),
-  movieEndTime: String ('10:36'),
+  lotte_movie_id: String ('18407'),
+  screen_id: String ('2'),
+  screen_type: String ('2D'),
+  left_seat: Number (70),
+  start_time: String ('08:20'),
+  end_time: String ('10:36'),
 }
 """
 def get_lotte_screen_movie_list(bsObj):
@@ -74,12 +74,12 @@ def get_lotte_screen_movie_list(bsObj):
         parse_time = parse('{start_time}종료 {end_time}', time_info)
 
         screen_movie_list.append({
-          'lotteMovieCode': movie_code['movie'][0],
-          'screenCode': parse_screen['screen_code'],
-          'screenType': screen_type,
-          'leftSeat': int(parse_seat['left_seat']),
-          'movieStartTime': parse_time['start_time'],
-          'movieEndTime': parse_time['end_time'],
+          'lotte_movie_id': movie_code['movie'][0],
+          'screen_id': parse_screen['screen_code'],
+          'screen_type': screen_type,
+          'left_seat': int(parse_seat['left_seat']),
+          'start_time': parse_time['start_time'],
+          'end_time': parse_time['end_time'],
         })
 
   return screen_movie_list

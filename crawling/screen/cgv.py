@@ -1,17 +1,19 @@
 from urllib.parse import urlparse, parse_qs
 from parse import *
 
+# TODO: screen_type -> screen_movie_list 로 이동
 """
 {
-  theaterCode: String,
-  screenCode: String,
-  screenType: String,
-  screenName: String,
-  totalSeat: Number,
+  theater_id: String,
+  screen_id: String,
+  screen_type: String,
+  screen_name: String,
+  total_seat: Number,
 }
 """
 def get_cgv_screen_list(bsObj):
   screen_list = []
+  # TODO: url parse -> theaterCode
 
   for hall_time_section in bsObj.select('.type-hall'):
     hall_info = hall_time_section.find('div', {'class': 'info-hall'}).findAll('li')
@@ -27,10 +29,10 @@ def get_cgv_screen_list(bsObj):
     screen_code = time_info.attrs['data-screencode']
 
     screen_list.append({
-      'screenCode': screen_code,
-      'screenType': screen_type,
-      'screenName': screen_name,
-      'totalSeat': int(total_seat),
+      'screen_id': screen_code,
+      'screen_type': screen_type,
+      'screen_name': screen_name,
+      'total_seat': int(total_seat),
     })
 
   return screen_list
@@ -38,12 +40,12 @@ def get_cgv_screen_list(bsObj):
 
 """
 {
-  cgvMovieCode: String,
-  screenCode: String,
-  leftSeat: Number,
-  movieStartTime: String,
-  movieEndTime: String,
-  canReserve: Boolean
+  cgv_movie_id: String,
+  screen_id: String,
+  left_seat: Number,
+  start_time: String,
+  end_time: String,
+  can_reserve: Boolean
 }
 """
 def get_cgv_screen_movie_list(bsObj):
@@ -62,12 +64,12 @@ def get_cgv_screen_movie_list(bsObj):
 
       ## TODO: 매진 됐을 때 canReserve와 left_seat 가 정상동작하는지 확인
       screen_movie_list.append({
-        'cgvMovieCode': movie_code['midx'][0],
-        'screenCode': screen_code,
-        'leftSeat': int(left_seat_parse['left_seat']),
-        'movieStartTime': movie_start_time,
-        'movieEndTime': movie_end_time,
-        'canReserve': left_seat_parse['left_seat'] == 0 if False else True
+        'cgv_movie_id': movie_code['midx'][0],
+        'screen_id': screen_code,
+        'left_seat': int(left_seat_parse['left_seat']),
+        'start_time': movie_start_time,
+        'end_time': movie_end_time,
+        'can_reserve': left_seat_parse['left_seat'] == 0 if False else True
       })
 
   return screen_movie_list
