@@ -15,7 +15,7 @@ def find_lotte_area_code(bsObj):
     code = parse_qs(urlparse(href).query)
 
     area_code_list.append({
-      'area_code': code['detailDivisionCode'][0],
+      'area_id': code['detailDivisionCode'][0],
       'area_name': area_name
     })
 
@@ -33,7 +33,7 @@ def find_lotte_theater_code(bsObj):
 
     if 'detailDivisionCode' in code and 'cinemaID' in code:
       theater_code_list.append({
-        'area_code': code['detailDivisionCode'][0],
+        'area_id': code['detailDivisionCode'][0],
         'theater_id': code['cinemaID'][0],
         'theater_name': theater_name
       })
