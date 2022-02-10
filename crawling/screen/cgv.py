@@ -11,7 +11,6 @@ from parse import *
 """
 def get_cgv_screen_list(bsObj, url):
   screen_list = []
-  # TODO: url parse -> theaterCode
   url_query = parse_qs(urlparse(url).query)
 
   for hall_time_section in bsObj.select('.type-hall'):

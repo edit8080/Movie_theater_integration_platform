@@ -5,15 +5,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
-import ssl
 import time
 
 options = webdriver.ChromeOptions()
 options.add_argument("headless")
 options.add_argument("--disable-popup-blocking")
 browser = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
-
-context = ssl._create_unverified_context()
 
 def get_html_with_click(url, css_selector, alert_remove=False):
   browser.get(url)
@@ -48,20 +45,19 @@ cgv_theater_url = 'http://www.cgv.co.kr/theaters/'
 mbox_theater_url = 'https://www.megabox.co.kr/theater/list/'
 lotte_theater_url = 'https://www.lottecinema.co.kr/'
 
-# cgv_area_code = find_cgv_area_code(get_html(cgv_theater_url))
-# cgv_theater_code = find_cgv_theater_code(get_html(cgv_theater_url))
+cgv_area_code = find_cgv_area_code(get_html(cgv_theater_url))
+cgv_theater_code = find_cgv_theater_code(get_html(cgv_theater_url))
 
-# mbox_theater_code = find_mbox_theater_code(get_html(mbox_theater_url))
+mbox_theater_code = find_mbox_theater_code(get_html(mbox_theater_url))
 
-# lotte_area_code = find_lotte_area_code(get_html(lotte_theater_url))
-# lotte_theater_code = find_lotte_theater_code(get_html(lotte_theater_url))
+lotte_area_code = find_lotte_area_code(get_html(lotte_theater_url))
+lotte_theater_code = find_lotte_theater_code(get_html(lotte_theater_url))
 
 from movie.cgv import get_cgv_movie_list
 from movie.megabox import get_mbox_movie_list
 from movie.lotte import get_lotte_movie_list
 
-### TODO: URL 영화관 코드는 REST API Query 로 탐색 (default 지정 필요?)
-# TODO: 각 영화관 url date 예외 처리
+# TODO: 각 영화관 url date 예외 처리 (url, click_selector)
 cgv_movies_url = 'http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0001&date=20220212'
 mbox_movies_url = 'https://www.megabox.co.kr/theater/time?brchNo=1372'
 lotte_movies_url = 'https://www.lottecinema.co.kr/NLCHS/Cinema/Detail?divisionCode=1&detailDivisionCode=1&cinemaID=9094'
@@ -70,9 +66,8 @@ lotte_movies_url = 'https://www.lottecinema.co.kr/NLCHS/Cinema/Detail?divisionCo
 mbox_click_selector = 'button[date-data="2022.02.10"]'
 lotte_click_selector = '.owl-item:nth-child(3) input[type=radio]'
 
-
-# cgv_movie_list = get_cgv_movie_list(get_html(cgv_movies_url))
-# mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector)) # TODO: date 예외 처리
+cgv_movie_list = get_cgv_movie_list(get_html(cgv_movies_url))
+mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector)) 
 lotte_movie_list = get_lotte_movie_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True))
 
 
@@ -86,5 +81,5 @@ cgv_screen_movie_list = get_cgv_screen_movie_list(get_html(cgv_movies_url))
 mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_click_selector), mbox_movies_url)
 mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
 
-# lotte_screen_list = get_lotte_screen_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True), lotte_movies_url)
+lotte_screen_list = get_lotte_screen_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True), lotte_movies_url)
 lotte_screen_movie_list = get_lotte_screen_movie_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True))
