@@ -35,6 +35,7 @@ def get_html(url):
 
   return bsObj
 
+### TODO: 모듈 분리 (theater, movie, screen)
 
 from theater.cgv import find_cgv_area_code, find_cgv_theater_code
 from theater.megabox import find_mbox_theater_code
