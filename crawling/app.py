@@ -62,7 +62,7 @@ from movie.lotte import get_lotte_movie_list
 
 ### TODO: URL 영화관 코드는 REST API Query 로 탐색 (default 지정 필요?)
 # TODO: 각 영화관 url date 예외 처리
-cgv_movies_url = 'http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0001&date=20220210'
+cgv_movies_url = 'http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0001&date=20220212'
 mbox_movies_url = 'https://www.megabox.co.kr/theater/time?brchNo=1372'
 lotte_movies_url = 'https://www.lottecinema.co.kr/NLCHS/Cinema/Detail?divisionCode=1&detailDivisionCode=1&cinemaID=9094'
 
@@ -74,14 +74,14 @@ lotte_click_selector = '.owl-item:nth-child(3) input[type=radio]'
 # cgv_movie_list = get_cgv_movie_list(get_html(cgv_movies_url))
 # mbox_movie_list = get_mbox_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector)) # TODO: date 예외 처리
 lotte_movie_list = get_lotte_movie_list(get_html_with_click(lotte_movies_url, lotte_click_selector, True))
-print(lotte_movie_list)
+
 
 from screen.cgv import get_cgv_screen_list, get_cgv_screen_movie_list
 from screen.megabox import get_mbox_screen_list, get_mbox_screen_movie_list
 from screen.lotte import get_lotte_screen_list, get_lotte_screen_movie_list
 
-# cgv_screen_list = get_cgv_screen_list(get_html(cgv_movies_url))
-# cgv_screen_movie_list = get_cgv_screen_movie_list(get_html(cgv_movies_url))
+cgv_screen_list = get_cgv_screen_list(get_html(cgv_movies_url), cgv_movies_url)
+cgv_screen_movie_list = get_cgv_screen_movie_list(get_html(cgv_movies_url))
 
 # mbox_screen_list = get_mbox_screen_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
 # mbox_screen_movie_list = get_mbox_screen_movie_list(get_html_with_click(mbox_movies_url, mbox_click_selector))
